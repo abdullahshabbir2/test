@@ -8,7 +8,6 @@ Created on Sun Jun 12 11:36:48 2022
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import pickle
 import json
 
 
