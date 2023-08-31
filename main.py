@@ -9,7 +9,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import json
-import pickle
+import joblib
 
 
 app = FastAPI()
@@ -37,7 +37,7 @@ class model_input(BaseModel):
     
 
 # loading the saved model
-diabetes_model = pickle.load(open('diabetes_model.sav','rb'))
+diabetes_model = joblib.load('diabetes_model.sav')
 
 
 @app.post('/diabetes_prediction')
