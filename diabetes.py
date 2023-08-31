@@ -2,12 +2,23 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import pickle
 import json
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 class model_input(BaseModel):
     
-    pregnancies : int
+    Pregnancies : int
     Glucose : int
     BloodPressure : int
     SkinThickness : int
@@ -25,7 +36,7 @@ def diabetes_predd(input_parameters : model_input):
     input_data = input_parameters.json()
     input_dictionary = json.loads(input_data)
     
-    preg = input_dictionary['pregnancies']
+    preg = input_dictionary['Pregnancies']
     glu = input_dictionary['Glucose']
     bp = input_dictionary['BloodPressure']
     skin = input_dictionary['SkinThickness']
